@@ -11,9 +11,9 @@ h1 {
 }
 .CardLayOut {
   position: relative;
-  width: 490px !important;
+  width: 550px !important;
   background-color: black !important;
-  opacity:0.7;
+  opacity:0.85;
   font-style: white !important;
 }
 .header{

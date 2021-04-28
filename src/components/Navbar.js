@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Menu } from 'semantic-ui-react'
-import Logo from './discover-logo.png'
+import Logo from '../images/discover-logo.png'
 import './navbar.css'
 import { Link } from "react-router-dom";
 
