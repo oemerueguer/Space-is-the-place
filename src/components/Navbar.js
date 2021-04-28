@@ -1,37 +1,47 @@
 import { useState } from 'react'
 import { Menu } from 'semantic-ui-react'
+import Logo from './discover-logo.png'
+import './navbar.css'
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [activeItem, setActiveItem] = useState('home')
 
-  const handleItemClick = (e, name) => setActiveItem(name)
-
   return (
     <Menu inverted fluid widths={6}>
-      <Menu.Item
+      <Menu.Item >
+      <img className='logo' src={Logo} />
+      </Menu.Item>
+      <Menu.Item as={Link}
+        to='/home'
         name='home'
         active={activeItem === 'home'}
-        onClick={handleItemClick}
+        onClick={(()=> setActiveItem('home'))}
       />
-      <Menu.Item
+        
+      <Menu.Item  as={Link}
+        to='/satellites'
         name='satellites'
         active={activeItem === 'satellites'}
-        onClick={handleItemClick}
+        onClick={(()=> setActiveItem('satellites'))}
       />
-      <Menu.Item
-        name='Moons'
-        active={activeItem === 'Moons'}
-        onClick={handleItemClick}
+      <Menu.Item as={Link}
+      to='/moons'
+        name='moons'
+        active={activeItem === 'moons'}
+        onClick={(()=> setActiveItem('moons'))}
       />
-            <Menu.Item
-        name='Planets'
-        active={activeItem === 'Planets'}
-        onClick={handleItemClick}
+            <Menu.Item as={Link}
+            to='/planets'
+        name='planets'
+        active={activeItem === 'planets'}
+        onClick={((e)=> setActiveItem('planets'))}
       />
-            <Menu.Item
-        name='Stars'
-        active={activeItem === 'Stars'}
-        onClick={handleItemClick}
+            <Menu.Item as={Link}
+            to='/stars'
+        name='stars'
+        active={activeItem === 'stars'}
+        onClick={(()=> setActiveItem('stars'))}
       />
     </Menu>
   )
