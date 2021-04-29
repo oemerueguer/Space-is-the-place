@@ -13,7 +13,7 @@ export default function Content({ data, numPages, changePage, page }) {
             minute: 'numeric'
         }))
     }
-    console.log(data)
+    /* console.log(data) */
     return (
         <div className='contentContainer'>
 

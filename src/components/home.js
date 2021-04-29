@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react'
 import { client } from '../client'
 import Content from './Content'
 import Nasa from './Nasa'
-import {useParams, useHistory} from 'react-router-dom'
+import {useParams, useHistory, useLocation} from 'react-router-dom'
 
 function Home() {
     const {page} = useParams()
     let history = useHistory();
+    let location = useLocation();
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState(false)
     const [numPages, setNumPages] = useState(1)
     const [resultsPerPage, setResultsPerPage] = useState(3)
     const [skip, setSkip] = useState(0)
@@ -22,8 +23,9 @@ function Home() {
     }
 
     useEffect(() => {
-        setSkip((page-1)*resultsPerPage)
-    }, [])
+        if(page)setSkip((page-1)*resultsPerPage)
+        else setSkip(0)
+    }, [location])
 
     useEffect(() => {
         client.getEntries({
@@ -41,7 +43,6 @@ function Home() {
 
     return (
         <>{!skip && <Nasa />}
-        {console.log(page)}
             <h1>Other Blog Posts:</h1>
             <Content data={data} numPages={numPages} changePage={changePage} page={page}/>
         </>

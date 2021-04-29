@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import { client } from '../client'
 import Content from './Content'
-import {useParams, useHistory} from 'react-router-dom'
+import {useParams, useHistory, useLocation} from 'react-router-dom'
 
 
 export default function Stars () {
     const {page} = useParams()
     let history = useHistory();
+    let location = useLocation()
 
     const [data, setData] = useState(false)
     const [numPages, setNumPages] = useState(1)
@@ -22,8 +23,9 @@ export default function Stars () {
     }
 
     useEffect(() => {
-        setSkip((page-1)*resultsPerPage)
-    }, [])
+        if(page)setSkip((page-1)*resultsPerPage)
+        else setSkip(0)
+    }, [location])
     
     useEffect(() => {
         client.getEntries({
@@ -37,7 +39,7 @@ export default function Stars () {
                 setData(response.items)
                 setNumPages(Math.ceil(response.total / resultsPerPage))
             })
-    }, [resultsPerPage, skip])
+    }, [resultsPerPage, skip, location])
 
 
     return (
