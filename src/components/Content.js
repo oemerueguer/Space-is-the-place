@@ -2,7 +2,7 @@ import { Card, Icon } from 'semantic-ui-react';
 
 
 
-export default function Content({data}) {
+export default function Content({ data }) {
 
     const calcDate = (time) => {
         const event = new Date(time)
@@ -14,8 +14,8 @@ export default function Content({data}) {
 
     return (
         <>
-            {console.log(data)}
-            {data.map((e) => (
+
+            {data.length == 0 ? <p>Loading...</p> : data.map((e) => (
                 <>
                     <Card
                         className='CardLayOut'
@@ -26,7 +26,8 @@ export default function Content({data}) {
                         description={e.fields.description.content[0].content[0].value}
                         extra={<p>
                             <Icon name='Distance' />
-                            {`Distance to XYZ: ${e.fields.distanceEarth}`}
+                            {e.fields.objectType == 'Star' ? 'Distance to Earth: ' : e.fields.objectType == 'Planet' ? 'Distance to Sun: ' : e.fields.objectType == 'Moon' ? 'Distance to Planet: ' : 'Distance to Earth: '}
+                            {e.fields.distanceEarth}
                             <Icon name='created_at' />
                             {`Created at: ${calcDate(e.fields.createdAt)}`}
                         </p>}

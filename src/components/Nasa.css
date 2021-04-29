@@ -1,0 +1,14 @@
+/* * {
+    margin-top: 0px !important;
+} */
+.nasa-photo {
+    margin-top: -15px !important;
+    margin-bottom: 50px;
+}
+
+
+.photo {
+    width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+}
