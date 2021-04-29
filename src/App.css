@@ -13,7 +13,7 @@ h1 {
   position: relative;
   width: 550px !important;
   background-color: black !important;
-  opacity:0.85;
+  /* opacity:0.85; */
   font-style: white !important;
 }
 .header{
