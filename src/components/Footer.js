@@ -15,7 +15,7 @@ function Footer () {
                <section className= "footer-info">
               <section className= "footer-info-left">
               <section className="footer-info_name"style= {{color:'white'}}>
-                  Software Engineer
+                  <a href='https://eyes.nasa.gov/apps/orrery/#/inner_solar_system' target='_blank'>Nasa Eyes</a>
               </section>
               <section className="footer-info_returns"style= {{color:'white'}}>
              Space Policy
