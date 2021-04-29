@@ -22,8 +22,6 @@ function Nasa() {
       <p>Loading...</p>
     </div>
     );
-
-  console.log(nasaData);
   return (
     <>
     <div className="nasa-photo">

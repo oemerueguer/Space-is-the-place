@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { useEffect, useState } from 'react'
+import { Menu, Sticky } from 'semantic-ui-react'
 import Logo from '../images/discover-logo.png'
 import './navbar.css'
 import { Link } from "react-router-dom";
@@ -7,8 +7,12 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   const [activeItem, setActiveItem] = useState('home')
 
+useEffect(() => {
+  setActiveItem(`${window.location.pathname.split('/')[1]}`)
+}, [])
+
   return (
-    <Menu inverted fluid widths={6}>
+    <Menu inverted fluid widths={6} fixed='top' className="spaceNavBar">
       <Menu.Item >
         <img className='logo' src={Logo} />
       </Menu.Item>
@@ -35,7 +39,7 @@ export default function Navbar() {
         to='/planets'
         name='planets'
         active={activeItem === 'planets'}
-        onClick={((e) => setActiveItem('planets'))}
+        onClick={(() => setActiveItem('planets'))}
       />
       <Menu.Item as={Link}
         to='/stars'

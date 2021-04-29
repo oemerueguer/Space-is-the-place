@@ -1,8 +1,10 @@
-import { Card, Icon } from 'semantic-ui-react';
+import { Card, Icon, Pagination, Grid } from 'semantic-ui-react';
+import './Content.css'
 
 
 
-export default function Content({ data }) {
+
+export default function Content({ data, numPages, changePage, page }) {
 
     const calcDate = (time) => {
         const event = new Date(time)
@@ -11,11 +13,11 @@ export default function Content({ data }) {
             minute: 'numeric'
         }))
     }
-
+    console.log(data)
     return (
-        <>
+        <div className='contentContainer'>
 
-            {data.length == 0 ? <p>Loading...</p> : data.map((e) => (
+            {!data ? <h3>Loading...</h3> : data.length === 0 ? <h3>Nothing found :(</h3> : data.map((e) => (
                 <>
                     <Card
                         className='CardLayOut'
@@ -30,12 +32,19 @@ export default function Content({ data }) {
                             {e.fields.distanceEarth}
                             <Icon name='created_at' />
                             {`Created at: ${calcDate(e.fields.createdAt)}`}
+                            {e.fields.amountOfObjects ?
+                                <><br /><Icon name='Distance' />
+                                    {`Number of Moons: ${e.fields.amountOfObjects}`}
+                                    <Icon name='Distance' />
+                                    {`Length of one Year: ${e.fields.lengthOfYear}`}
+                                    </> : ''}
                         </p>}
                         centered
                     />
                 </>
             ))
             }
-        </>
+            <Grid><Grid.Column textAlign="center"><Pagination className='pagination' inverted defaultActivePage={page} totalPages={numPages} onPageChange={((e, data) => changePage(data.activePage -1))} /></Grid.Column></Grid>
+        </div>
     )
 }

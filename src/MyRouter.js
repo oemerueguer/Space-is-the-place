@@ -12,19 +12,19 @@ function Routing() {
                 <Route exact path="/">
                     <Redirect to="/home" />
                 </Route>
-                <Route path="/home">
+                <Route path="/home/:page?">
                     <Home />
                 </Route>
-                <Route path="/planets">
+                <Route path="/planets/:page?">
                     <Planets />
                 </Route>
-                <Route path="/satellites">
+                <Route path="/satellites/:page?">
                     <Satellites />
                 </Route>
-                <Route path="/moons">
+                <Route path="/moons/:page?">
                     <Moons />
                 </Route>
-                <Route path="/stars">
+                <Route path="/stars/:page?">
                     <Stars />
                 </Route>
             </Switch>
