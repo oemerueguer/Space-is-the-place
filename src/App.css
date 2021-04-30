@@ -1,6 +1,38 @@
 .App {
   text-align: center;
 }
+h1 {
+  position: relative;
+  z-index: 1000;
+  color: white;
+}
+.borderDesign {
+  border-color:2px solid #F2B05E;
+}
+.CardLayOut {
+  position: relative;
+  width: 550px !important;
+  background-color: black !important;
+  /* opacity:0.85; */
+  font-style: white !important;
+}
+.header{
+  font-family: 'New Tegomin', serif !important;
+  color: white !important;
+  font-size: 1.6rem !important;
+}
+.meta,
+.description {
+  color: white !important;
+  font-size: 1.4rem !important;
+}
+.extra {
+  color: white !important;
+}
+.info {
+  color: white !important;
+
+}
 
 .App-logo {
   height: 40vmin;

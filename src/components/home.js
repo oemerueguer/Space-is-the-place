@@ -1,48 +1,52 @@
-import {useState, useEffect} from 'react'
-import {client} from '../client'
-import axios from 'axios'
+import { useState, useEffect } from 'react'
+import { client } from '../client'
+import Content from './Content'
+import Nasa from './Nasa'
+import {useParams, useHistory, useLocation} from 'react-router-dom'
 
+function Home() {
+    const {page} = useParams()
+    let history = useHistory();
+    let location = useLocation();
 
-function Home () {
-const [data, setData] = useState([])
+    const [data, setData] = useState(false)
+    const [numPages, setNumPages] = useState(1)
+    const [resultsPerPage, setResultsPerPage] = useState(3)
+    const [skip, setSkip] = useState(0)
+  
 
-
-useEffect(() => {
-    client.getEntries({
-        content_type : 'blogPost'
-      })
-      .then(response => setData(response.items))
-}, [])
-
-
-const calcDate = (time) => {
-    const event = new Date(time)
-return(event.toLocaleDateString('de-DE', {
-            hour: 'numeric',
-            minute: 'numeric'
-          }))
-}
-
-    return(
-    <>
-    {console.log(data)}
-    {data.map((e) => (
-        <>
-        <img height="200" src={e.fields.postImage.fields.file.url}/>
-        <h2>{e.fields.postTitle}</h2>
-        <h3>{e.fields.objectType} | Size relative to other {e.fields.objectType}s: {e.fields.relativeSize}</h3>
-        <p>{e.fields.description.content[0].content[0].value}</p>
-        <p>Distance to XYZ: {e.fields.distanceEarth}</p>
-        <p>Post was created at: {calcDate(e.fields.createdAt)}</p>
-        </>
-    ))
-
+    const changePage = (p) => {
+        setSkip(p*resultsPerPage)
+        history.push(`/home/${p +1}`)
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
-    
+
+    useEffect(() => {
+        if(page)setSkip((page-1)*resultsPerPage)
+        else setSkip(0)
+    }, [location])
+
+    useEffect(() => {
+        client.getEntries({
+            content_type: 'blogPost',
+            skip: `${skip}`,
+            limit: `${resultsPerPage}`,
+            order: '-fields.createdAt'
+        })
+            .then(response => {
+                setData(response.items)
+                setNumPages(Math.ceil(response.total / resultsPerPage))
+            })
+    }, [resultsPerPage, skip])
 
 
-</>
-)
+    return (
+        <>{!skip && <Nasa />}
+            <h1>Other Blog Posts:</h1>
+            <Content data={data} numPages={numPages} changePage={changePage} page={page}/>
+        </>
+    )
 }
 
 
