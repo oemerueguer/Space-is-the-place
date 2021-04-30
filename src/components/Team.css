@@ -1,6 +1,6 @@
 .aboutSection{
     padding: 8rem 0;
-    background-color: black;
+    background-color: transparent;
 }
 
 .heading{
@@ -23,6 +23,7 @@
     margin-left: auto;
     border: 2px solid white;
     border-radius: 7px;
+    background-color: black;
 }
 
 .card img{
