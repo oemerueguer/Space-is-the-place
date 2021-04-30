@@ -4,6 +4,7 @@ import Planets from './components/Planets'
 import Satellites from './components/Satellites'
 import Moons from './components/Moons'
 import Stars from './components/Stars'
+import Team from './components/Team'
 
 function Routing() {
     return (
@@ -26,6 +27,9 @@ function Routing() {
                 </Route>
                 <Route path="/stars/:page?">
                     <Stars />
+                </Route>
+                <Route path="/about">
+                    <Team />
                 </Route>
             </Switch>
         </>

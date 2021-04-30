@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 import './Footer.css'
 
@@ -9,8 +10,7 @@ function Footer () {
         <section className="Footer" style= {{backgroundColor: "black"}} >
             <hr className="footer-separator" />
             <section className= "footer-social-media">
-               
-                <a href="/" target= "_blank" rel=""> Space Media</a>
+                <Link to="/about"> Space Media</Link>
                </section>
                <section className= "footer-info">
               <section className= "footer-info-left">
