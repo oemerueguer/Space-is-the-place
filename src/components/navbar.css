@@ -1,0 +1,14 @@
+.spaceNavBar {
+  font-family: 'New Tegomin', serif !important;
+}
+
+.logo {
+    width: auto !important;
+    height: 40px;
+}
+
+@media only screen and (max-width: 650px) {
+    .logo {
+      height: 20px;
+    }
+  }
